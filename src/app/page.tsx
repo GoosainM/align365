@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Dumbbell, Flame, Trophy, HeartPulse, ChevronDown, Award, Check } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, CheckCircle2, Dumbbell, Flame, Trophy, HeartPulse, ChevronDown, Award, Check, Zap } from "lucide-react";
 
 function Align365Logo() {
   return (
@@ -24,6 +25,88 @@ function Align365Logo() {
         <span className="font-black text-black text-sm tracking-widest leading-none">365</span>
       </div>
     </div>
+  );
+}
+
+function HyroxLeadSection() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "HYROX Lead Magnet",
+          name,
+          email,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (res.ok) {
+        router.push("/hyrox-thank-you");
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Submission error. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section className="py-20 bg-white border-t border-stone-200">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="p-8 sm:p-12 bg-[#FAF8F5] border-2 border-stone-300 rounded-3xl space-y-6 shadow-sm text-center">
+          <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-black bg-stone-200 px-4 py-1.5 rounded-full">
+            <Zap className="w-3.5 h-3.5 text-black fill-black" /> Free 14-Day System
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-black">
+            Build Your Engine: Free 2-Week HYROX Program
+          </h2>
+          
+          <p className="text-stone-700 text-sm max-w-xl mx-auto leading-relaxed">
+            Get the exact 14-day hybrid training blueprint engineered for aerobic capacity, functional strength, and stamina without risking burnout.
+          </p>
+
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto pt-2">
+            <input
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="First Name"
+              className="px-4 py-3.5 bg-white text-black rounded-xl border border-stone-300 text-xs font-medium w-full focus:outline-none focus:border-black transition-colors"
+            />
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email Address"
+              className="px-4 py-3.5 bg-white text-black rounded-xl border border-stone-300 text-xs font-medium w-full focus:outline-none focus:border-black transition-colors"
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-black text-white font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-xl hover:bg-stone-800 transition-colors whitespace-nowrap shadow-md disabled:opacity-50"
+            >
+              {loading ? "Sending..." : "Get Free Plan"}
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -82,16 +165,16 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[88vh] flex items-center justify-center overflow-hidden bg-black">
         <video
-  ref={(el) => { if (el) el.muted = true; }}
-  className="absolute inset-0 h-full w-full object-cover"
-  src="/vid1.mp4"
-  poster="/vid1.mp4"
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="auto"
-/>
+          ref={(el) => { if (el) el.muted = true; }}
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/vid1.mp4"
+          poster="/vid1.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/50" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-6">
@@ -197,6 +280,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Free HYROX Lead Magnet Funnel Section */}
+      <HyroxLeadSection />
+
       {/* Meet Your Coach Section */}
       <section className="py-24 border-t border-stone-200 bg-white">
         <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
@@ -253,7 +339,7 @@ export default function HomePage() {
         </div>
       </section>
 
-{/* Experience Workouts Banner */}
+      {/* Experience Workouts Banner */}
       <section className="py-20 bg-white border-t border-stone-200 text-center">
         <div className="max-w-4xl mx-auto px-6 space-y-8">
           <h2 className="text-3xl font-black uppercase text-black">Experience Workouts That Help You Achieve</h2>
@@ -283,41 +369,40 @@ export default function HomePage() {
       </section>
 
       {/* Questions / FAQ Accordion Section with Background Image */}
-<section id="faq" className="relative py-24 text-white overflow-hidden bg-black isolate border-t border-stone-800">
-  {/* Background Image & Dark Gradient Overlay */}
-  <div 
-    className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-100 z-0"
-    style={{ backgroundImage: "url('/pic4.jpg')" }}
-  />
-  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/85 to-black/95 z-0" />
+      <section id="faq" className="relative py-24 text-white overflow-hidden bg-black isolate border-t border-stone-800">
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-100 z-0"
+          style={{ backgroundImage: "url('/pic4.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/85 to-black/95 z-0" />
 
-  <div className="relative z-10 max-w-6xl mx-auto px-6">
-    <div className="max-w-3xl">
-      <span className="inline-block text-xs font-black uppercase tracking-[0.25em] text-black bg-white px-4 py-1.5 rounded-full mb-4 shadow">
-        Got Questions?
-      </span>
-      <h2 className="text-3xl sm:text-5xl font-black uppercase text-white mb-8 tracking-tight drop-shadow">
-        Frequently Asked Questions
-      </h2>
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <div className="max-w-3xl">
+            <span className="inline-block text-xs font-black uppercase tracking-[0.25em] text-black bg-white px-4 py-1.5 rounded-full mb-4 shadow">
+              Got Questions?
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black uppercase text-white mb-8 tracking-tight drop-shadow">
+              Frequently Asked Questions
+            </h2>
 
-      <div className="divide-y divide-stone-800 bg-black/50 backdrop-blur-md border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
-        {faqs.map((item, idx) => (
-          <details key={idx} className="group py-4 first:pt-0 last:pb-0">
-            <summary className="flex cursor-pointer list-none items-center justify-between py-2 text-sm sm:text-base font-bold text-white hover:text-stone-300 transition-colors [&::-webkit-details-marker]:hidden">
-              <span className="flex items-center gap-3">
-                <span className="text-stone-400 font-normal">–</span> {item.q}
-              </span>
-              <ChevronDown className="h-4 w-4 text-stone-400 transition-transform duration-300 group-open:rotate-180 group-open:text-white flex-shrink-0" />
-            </summary>
-            <p className="mt-3 pb-2 pl-6 text-xs sm:text-sm leading-relaxed text-stone-300 font-medium">
-              {item.a}
-            </p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+            <div className="divide-y divide-stone-800 bg-black/50 backdrop-blur-md border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
+              {faqs.map((item, idx) => (
+                <details key={idx} className="group py-4 first:pt-0 last:pb-0">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-2 text-sm sm:text-base font-bold text-white hover:text-stone-300 transition-colors [&::-webkit-details-marker]:hidden">
+                    <span className="flex items-center gap-3">
+                      <span className="text-stone-400 font-normal">–</span> {item.q}
+                    </span>
+                    <ChevronDown className="h-4 w-4 text-stone-400 transition-transform duration-300 group-open:rotate-180 group-open:text-white flex-shrink-0" />
+                  </summary>
+                  <p className="mt-3 pb-2 pl-6 text-xs sm:text-sm leading-relaxed text-stone-300 font-medium">
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="bg-white py-12 border-t border-stone-200 text-stone-600 text-xs">
