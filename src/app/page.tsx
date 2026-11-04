@@ -40,14 +40,14 @@ function HyroxLeadSection() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/application", {
+      const res = await fetch("/api/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "HYROX Lead Magnet",
-          name: `${firstName} ${lastName}`,
+          firstName,
+          lastName,
           email,
-          submittedAt: new Date().toISOString(),
         }),
       });
 
@@ -73,7 +73,7 @@ function HyroxLeadSection() {
           <div className="lg:col-span-5 relative h-72 lg:h-full min-h-[350px] bg-stone-900">
             <div 
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/pic4.jpg')" }} // Change to your preferred image
+              style={{ backgroundImage: "url('/pic1.jpg')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent lg:hidden" />
             <div className="absolute bottom-4 left-4 right-4 lg:hidden text-white">
@@ -85,10 +85,6 @@ function HyroxLeadSection() {
 
           {/* Content & Form Column */}
           <div className="lg:col-span-7 p-8 sm:p-12 space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-black bg-stone-200 px-4 py-1.5 rounded-full">
-              <Zap className="w-3.5 h-3.5 text-black fill-black" /> Hybrid Training System
-            </div>
-            
             <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-black leading-none">
               Free 2-week HYROX Program
             </h2>
