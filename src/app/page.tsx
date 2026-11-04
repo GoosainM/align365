@@ -29,7 +29,8 @@ function Align365Logo() {
 }
 
 function HyroxLeadSection() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -44,7 +45,7 @@ function HyroxLeadSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "HYROX Lead Magnet",
-          name,
+          name: `${firstName} ${lastName}`,
           email,
           submittedAt: new Date().toISOString(),
         }),
@@ -64,46 +65,94 @@ function HyroxLeadSection() {
   };
 
   return (
-    <section className="py-20 bg-white border-t border-stone-200">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="p-8 sm:p-12 bg-[#FAF8F5] border-2 border-stone-300 rounded-3xl space-y-6 shadow-sm text-center">
-          <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-black bg-stone-200 px-4 py-1.5 rounded-full">
-            <Zap className="w-3.5 h-3.5 text-black fill-black" /> Free 14-Day System
+    <section className="py-24 bg-white border-t border-stone-200">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="bg-[#FAF8F5] border-2 border-stone-300 rounded-3xl overflow-hidden shadow-sm grid lg:grid-cols-12 items-center">
+          
+          {/* Side Photo Column */}
+          <div className="lg:col-span-5 relative h-72 lg:h-full min-h-[350px] bg-stone-900">
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/pic1.jpg')" }} // Change to your preferred image
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent lg:hidden" />
+            <div className="absolute bottom-4 left-4 right-4 lg:hidden text-white">
+              <span className="text-xs font-black uppercase tracking-widest bg-white/20 px-3 py-1 rounded backdrop-blur-sm">
+                Limited Time Freebie
+              </span>
+            </div>
           </div>
-          
-          <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-black">
-            Build Your Engine: Free 2-Week HYROX Program
-          </h2>
-          
-          <p className="text-stone-700 text-sm max-w-xl mx-auto leading-relaxed">
-            Get the exact 14-day hybrid training blueprint engineered for aerobic capacity, functional strength, and stamina without risking burnout.
-          </p>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto pt-2">
-            <input
-              type="text"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="First Name"
-              className="px-4 py-3.5 bg-white text-black rounded-xl border border-stone-300 text-xs font-medium w-full focus:outline-none focus:border-black transition-colors"
-            />
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email Address"
-              className="px-4 py-3.5 bg-white text-black rounded-xl border border-stone-300 text-xs font-medium w-full focus:outline-none focus:border-black transition-colors"
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              className="bg-black text-white font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-xl hover:bg-stone-800 transition-colors whitespace-nowrap shadow-md disabled:opacity-50"
-            >
-              {loading ? "Sending..." : "Get Free Plan"}
-            </button>
-          </form>
+          {/* Content & Form Column */}
+          <div className="lg:col-span-7 p-8 sm:p-12 space-y-6">
+            <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-black bg-stone-200 px-4 py-1.5 rounded-full">
+              <Zap className="w-3.5 h-3.5 text-black fill-black" /> Hybrid Training System
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-black leading-none">
+              Free 2-week HYROX Program
+            </h2>
+            
+            {/* 2 Benefits underneath */}
+            <div className="space-y-2.5 pt-1">
+              <div className="flex items-center gap-2.5 text-xs font-bold uppercase text-stone-800">
+                <CheckCircle2 className="w-4 h-4 text-black flex-shrink-0" />
+                <span>Builds peak aerobic engine & endurance capacity</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-xs font-bold uppercase text-stone-800">
+                <CheckCircle2 className="w-4 h-4 text-black flex-shrink-0" />
+                <span>Engineered for functional strength & stamina</span>
+              </div>
+            </div>
+
+            {/* Form Fields Stacked Underneath */}
+            <form onSubmit={handleSubmit} className="space-y-3 pt-2">
+              <div>
+                <label className="block text-[11px] font-black uppercase tracking-wider text-stone-600 mb-1">First Name</label>
+                <input
+                  type="text"
+                  required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="Enter your first name"
+                  className="w-full px-4 py-3 bg-white text-black rounded-xl border border-stone-300 text-xs font-medium focus:outline-none focus:border-black transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-black uppercase tracking-wider text-stone-600 mb-1">Last Name</label>
+                <input
+                  type="text"
+                  required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Enter your last name"
+                  className="w-full px-4 py-3 bg-white text-black rounded-xl border border-stone-300 text-xs font-medium focus:outline-none focus:border-black transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-black uppercase tracking-wider text-stone-600 mb-1">Email Address</label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  className="w-full px-4 py-3 bg-white text-black rounded-xl border border-stone-300 text-xs font-medium focus:outline-none focus:border-black transition-colors"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full mt-2 bg-black text-white font-black text-xs uppercase tracking-widest py-4 rounded-xl hover:bg-stone-800 transition-colors shadow-md disabled:opacity-50"
+              >
+                {loading ? "Sending..." : "Download Free Program"}
+              </button>
+            </form>
+          </div>
+
         </div>
       </div>
     </section>
