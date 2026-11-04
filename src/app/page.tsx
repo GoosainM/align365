@@ -227,11 +227,10 @@ export default function HomePage() {
             Personal Trainer & Online Coach ·
           </span>
 
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white leading-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white leading-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
             Transform your training <br className="hidden sm:inline" />
             <span className="text-white underline decoration-stone-300">Elevate your performance</span>
-          </h1>
-
+            </h1>
           <p className="text-stone-100 text-sm sm:text-base max-w-2xl mx-auto font-medium drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
             Strength and conditioning coaching online and in-person with structured programming. Get a clear plan for your fitness journey.
           </p>
