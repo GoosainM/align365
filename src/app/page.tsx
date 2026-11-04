@@ -73,7 +73,7 @@ function HyroxLeadSection() {
           <div className="lg:col-span-5 relative h-72 lg:h-full min-h-[350px] bg-stone-900">
             <div 
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/pic1.jpg')" }}
+              style={{ backgroundImage: "url('/pic4.jpg')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent lg:hidden" />
             <div className="absolute bottom-4 left-4 right-4 lg:hidden text-white">
