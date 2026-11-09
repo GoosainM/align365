@@ -131,7 +131,7 @@ export default function PackagesPage() {
                     <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">2 Sessions / Week</span>
                     <h3 className="text-2xl font-black uppercase text-white mt-1"></h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-white">R2,800</span>
+                      <span className="text-4xl font-black text-white">R2,400</span>
                       <span className="text-xs text-stone-300 font-bold uppercase">/ month</span>
                     </div>
                   </div>
@@ -177,7 +177,7 @@ export default function PackagesPage() {
                     <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">3 Sessions / Week</span>
                     <h3 className="text-2xl font-black uppercase text-white mt-1"></h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-white">R3,900</span>
+                      <span className="text-4xl font-black text-white">R3,000</span>
                       <span className="text-xs text-stone-300 font-bold uppercase">/ month</span>
                     </div>
                   </div>
@@ -219,7 +219,7 @@ export default function PackagesPage() {
                     <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">4 Sessions / Week</span>
                     <h3 className="text-2xl font-black uppercase text-white mt-1"></h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-white">R4,800</span>
+                      <span className="text-4xl font-black text-white">R4,000</span>
                       <span className="text-xs text-stone-300 font-bold uppercase">/month</span>
                     </div>
                   </div>
@@ -277,7 +277,7 @@ export default function PackagesPage() {
                     </span>
                     <h3 className="text-2xl font-black uppercase text-white mt-3">Monthly</h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-white">R1,200</span>
+                      <span className="text-4xl font-black text-white">R1,000</span>
                       <span className="text-xs text-stone-300 font-bold uppercase">/ month</span>
                     </div>
                   </div>
@@ -323,7 +323,7 @@ export default function PackagesPage() {
                     <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">Full Commitment</span>
                     <h3 className="text-2xl font-black uppercase text-white mt-3">12 Weeks</h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-white">R2,100</span>
+                      <span className="text-4xl font-black text-white">R1,700</span>
                       <span className="text-xs text-stone-300 font-bold uppercase">once off</span>
                     </div>
                   </div>
