@@ -86,12 +86,12 @@ export default function ApplyPage() {
   // Pricing helper for Step 2
   const getPrice = () => {
     if (selectedService === "online") {
-      return commitment === "12weeks" ? "R2,100 once off" : "R1,200 / month";
+      return commitment === "12weeks" ? "R1,700 once off" : "R1,000 / month";
     }
-    if (frequency === 1) return "R1,500 / month";
-    if (frequency === 2) return "R2,800 / month";
-    if (frequency === 3) return "R3,900 / month";
-    if (frequency === 4) return "R4,800 / month";
+    if (frequency === 1) return "R1,000 / month";
+    if (frequency === 2) return "R2,400 / month";
+    if (frequency === 3) return "R3,000 / month";
+    if (frequency === 4) return "R4,000 / month";
     return "R5,800 / month";
   };
 
